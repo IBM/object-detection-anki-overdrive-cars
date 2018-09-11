@@ -1,0 +1,940 @@
+[
+    {
+        "id": "61867e00.4decf4",
+        "type": "ibmiot in",
+        "z": "501484c3.394dbc",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "deviceId": "nh-groundshock",
+        "applicationId": "",
+        "deviceType": "ankisupercar",
+        "eventType": "39",
+        "commandType": "",
+        "format": "json",
+        "name": "GroundShock",
+        "service": "registered",
+        "allDevices": false,
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allEvents": false,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": "0",
+        "x": 335.0000114440918,
+        "y": 682.1111421585083,
+        "wires": [
+            [
+                "c4366257.09e61",
+                "5f643b1a.676594"
+            ]
+        ]
+    },
+    {
+        "id": "5f643b1a.676594",
+        "type": "debug",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload.d",
+        "x": 590.5555648803711,
+        "y": 681.0000400543213,
+        "wires": []
+    },
+    {
+        "id": "5cb2f4b2.6534fc",
+        "type": "ibmiot in",
+        "z": "501484c3.394dbc",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "deviceId": "nh-skull",
+        "applicationId": "",
+        "deviceType": "ankisupercar",
+        "eventType": "39",
+        "commandType": "",
+        "format": "json",
+        "name": "Skull",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": "",
+        "allEvents": true,
+        "allCommands": "",
+        "allFormats": "",
+        "x": 316.11113357543945,
+        "y": 743.2222557067871,
+        "wires": [
+            [
+                "c4366257.09e61",
+                "5f643b1a.676594"
+            ]
+        ]
+    },
+    {
+        "id": "87472a5c.5efc18",
+        "type": "ibmiot out",
+        "z": "501484c3.394dbc",
+        "authentication": "boundService",
+        "apiKey": "",
+        "outputType": "cmd",
+        "deviceId": "nh-skull",
+        "deviceType": "ankisupercar",
+        "eventCommandType": "car",
+        "format": "json",
+        "data": "___",
+        "qos": "",
+        "name": "Skull",
+        "service": "registered",
+        "x": 452.7778129577637,
+        "y": 406.88890743255615,
+        "wires": []
+    },
+    {
+        "id": "a21e34ed.ca01f8",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Speed Medium",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 133.88893508911133,
+        "y": 234.111159324646,
+        "wires": [
+            [
+                "18256be9.1642b4"
+            ]
+        ]
+    },
+    {
+        "id": "18256be9.1642b4",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#s\",\n        speed : \"400\",\n        accel : \"12500\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 279.7778015136719,
+        "y": 234.00005435943604,
+        "wires": [
+            [
+                "87472a5c.5efc18"
+            ]
+        ]
+    },
+    {
+        "id": "37da07cb.ceee48",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Speed High",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 123.88893127441406,
+        "y": 270.2223119735718,
+        "wires": [
+            [
+                "165247ef.0e4a68"
+            ]
+        ]
+    },
+    {
+        "id": "165247ef.0e4a68",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#s\",\n        speed : \"1000\",\n        accel : \"12500\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 281.6667022705078,
+        "y": 270.1111478805542,
+        "wires": [
+            [
+                "87472a5c.5efc18"
+            ]
+        ]
+    },
+    {
+        "id": "cc060591.8d47c8",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Speed Zero",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 123.88894653320312,
+        "y": 198.00001525878906,
+        "wires": [
+            [
+                "19bf06ca.f32819"
+            ]
+        ]
+    },
+    {
+        "id": "19bf06ca.f32819",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg = {}\nmsg.payload = JSON.stringify({\n    d: {\n        action : \"#s\",\n        speed : \"0\",\n        accel : \"12500\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 280.5555763244629,
+        "y": 198.00000095367432,
+        "wires": [
+            [
+                "87472a5c.5efc18"
+            ]
+        ]
+    },
+    {
+        "id": "54b335ca.a18c5c",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Ping",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 112.77783203125,
+        "y": 412.88893699645996,
+        "wires": [
+            [
+                "6484180b.3b2988"
+            ]
+        ]
+    },
+    {
+        "id": "6484180b.3b2988",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#ping\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 281.66670989990234,
+        "y": 412.4444341659546,
+        "wires": [
+            [
+                "87472a5c.5efc18"
+            ]
+        ]
+    },
+    {
+        "id": "87e75ae8.f96508",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Disconnect",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 122.77782821655273,
+        "y": 451.3333387374878,
+        "wires": [
+            [
+                "5a2ae96c.ea5638"
+            ]
+        ]
+    },
+    {
+        "id": "5a2ae96c.ea5638",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#q\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 281.4444885253906,
+        "y": 451.22223377227783,
+        "wires": [
+            [
+                "87472a5c.5efc18"
+            ]
+        ]
+    },
+    {
+        "id": "28cb39ad.2f7ab6",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Battery",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 112.77782821655273,
+        "y": 488.8889226913452,
+        "wires": [
+            [
+                "e33932ab.10241"
+            ]
+        ]
+    },
+    {
+        "id": "e33932ab.10241",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#bat\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 281.3333396911621,
+        "y": 489.11109161376953,
+        "wires": [
+            [
+                "87472a5c.5efc18"
+            ]
+        ]
+    },
+    {
+        "id": "d13ec9b3.8e2c48",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Version",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 112.88895034790039,
+        "y": 527.2222318649292,
+        "wires": [
+            [
+                "5d411f25.b85aa"
+            ]
+        ]
+    },
+    {
+        "id": "5d411f25.b85aa",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#ver\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 281.666748046875,
+        "y": 526.8889665603638,
+        "wires": [
+            [
+                "87472a5c.5efc18"
+            ]
+        ]
+    },
+    {
+        "id": "ab5f2d43.915bb",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Lights",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 112.88895797729492,
+        "y": 565.7778034210205,
+        "wires": [
+            [
+                "41dc56bb.300de8"
+            ]
+        ]
+    },
+    {
+        "id": "c98ea105.e3a2c",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Lights Pattern",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 130.77782821655273,
+        "y": 603.666654586792,
+        "wires": [
+            [
+                "dc2cfd3d.bf0fc"
+            ]
+        ]
+    },
+    {
+        "id": "41dc56bb.300de8",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#l\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 281.44451904296875,
+        "y": 565.666672706604,
+        "wires": [
+            [
+                "87472a5c.5efc18"
+            ]
+        ]
+    },
+    {
+        "id": "dc2cfd3d.bf0fc",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#lp\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 281.66670989990234,
+        "y": 603.5555982589722,
+        "wires": [
+            [
+                "87472a5c.5efc18"
+            ]
+        ]
+    },
+    {
+        "id": "c4366257.09e61",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "Store Offset",
+        "func": "if (msg.eventType == \"39\") {\n    if (msg.deviceId == \"nh-skull\") {\n        context.global.offsetSkull = msg.payload.d.offset;\n    }\n    else {\n        context.global.offsetGroundShock = msg.payload.d.offset;\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 578.3333282470703,
+        "y": 745.4444856643677,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "474c8b4b.9c72e4",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Turn Left",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 115.00006484985352,
+        "y": 321.66669178009033,
+        "wires": [
+            [
+                "34e57792.a44508"
+            ]
+        ]
+    },
+    {
+        "id": "34e57792.a44508",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "var newOffset = 0.0;\nif (context.global.offsetSkull) {\n    if (context.global.offsetGroundShock) {\n        if (context.global.offsetGroundShock + 50 < context.global.offsetSkull - 30.0) {\n            newOffset = context.global.offsetSkull - 30.0;\n        }\n        else {\n            newOffset = context.global.offsetSkull + 30.0;\n        }\n    }\n    else {\n        newOffset = context.global.offsetSkull - 30.0;\n    }\n}\n\nmsg.payload = JSON.stringify({\n    d: {\n        action : \"#c\",\n        offset : newOffset\n      }\n});\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 280.66669845581055,
+        "y": 321.44447565078735,
+        "wires": [
+            [
+                "87472a5c.5efc18"
+            ]
+        ]
+    },
+    {
+        "id": "67609a43.730824",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Turn Right",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 119.44451141357422,
+        "y": 359.1111354827881,
+        "wires": [
+            [
+                "1f70be11.557d32"
+            ]
+        ]
+    },
+    {
+        "id": "1f70be11.557d32",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "var newOffset = 0.0;\nif (context.global.offsetSkull) {\n    newOffset = context.global.offsetSkull + 30.0;\n}\n\nmsg.payload = JSON.stringify({\n    d: {\n        action : \"#c\",\n        offset : newOffset\n      }\n});\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 280.5555839538574,
+        "y": 359.22223567962646,
+        "wires": [
+            [
+                "87472a5c.5efc18"
+            ]
+        ]
+    },
+    {
+        "id": "536ea950.f68af8",
+        "type": "ibmiot out",
+        "z": "501484c3.394dbc",
+        "authentication": "boundService",
+        "apiKey": "",
+        "outputType": "cmd",
+        "deviceId": "nh-groundshock",
+        "deviceType": "ankisupercar",
+        "eventCommandType": "car",
+        "format": "json",
+        "data": "___",
+        "name": "GroundShock",
+        "service": "registered",
+        "x": 950.5555992126465,
+        "y": 410.33336353302,
+        "wires": []
+    },
+    {
+        "id": "e85d094e.fa3208",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Speed Medium",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 631.6667213439941,
+        "y": 237.55561542510986,
+        "wires": [
+            [
+                "582cdb8d.8e2614"
+            ]
+        ]
+    },
+    {
+        "id": "582cdb8d.8e2614",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#s\",\n        speed : \"500\",\n        accel : \"12500\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 777.5555877685547,
+        "y": 237.4445104598999,
+        "wires": [
+            [
+                "536ea950.f68af8"
+            ]
+        ]
+    },
+    {
+        "id": "6638bbf4.35b1d4",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Speed High",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 621.6667175292969,
+        "y": 273.66676807403564,
+        "wires": [
+            [
+                "f7aae4c4.c07b98"
+            ]
+        ]
+    },
+    {
+        "id": "f7aae4c4.c07b98",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#s\",\n        speed : \"1000\",\n        accel : \"12500\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 779.4444885253906,
+        "y": 273.55560398101807,
+        "wires": [
+            [
+                "536ea950.f68af8"
+            ]
+        ]
+    },
+    {
+        "id": "7f05484b.24fe88",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Speed Zero",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 621.6667327880859,
+        "y": 201.44447135925293,
+        "wires": [
+            [
+                "4100328a.add1dc"
+            ]
+        ]
+    },
+    {
+        "id": "4100328a.add1dc",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg = {}\nmsg.payload = JSON.stringify({\n    d: {\n        action : \"#s\",\n        speed : \"0\",\n        accel : \"12500\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 778.3333625793457,
+        "y": 201.44445705413818,
+        "wires": [
+            [
+                "536ea950.f68af8"
+            ]
+        ]
+    },
+    {
+        "id": "d8e0b9eb.39ec18",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Ping",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 610.5556182861328,
+        "y": 416.3333930969238,
+        "wires": [
+            [
+                "a955ae60.7f56"
+            ]
+        ]
+    },
+    {
+        "id": "a955ae60.7f56",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#ping\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 779.4444961547852,
+        "y": 415.88889026641846,
+        "wires": [
+            [
+                "536ea950.f68af8"
+            ]
+        ]
+    },
+    {
+        "id": "e9bdedb0.44a6c",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Disconnect",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 620.5556144714355,
+        "y": 454.77779483795166,
+        "wires": [
+            [
+                "422e8400.b1edcc"
+            ]
+        ]
+    },
+    {
+        "id": "422e8400.b1edcc",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#q\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 779.2222747802734,
+        "y": 454.6666898727417,
+        "wires": [
+            [
+                "536ea950.f68af8"
+            ]
+        ]
+    },
+    {
+        "id": "40cbc029.ed9f",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Battery",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 610.5556144714355,
+        "y": 492.3333787918091,
+        "wires": [
+            [
+                "de69c551.f22178"
+            ]
+        ]
+    },
+    {
+        "id": "de69c551.f22178",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#bat\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 779.1111259460449,
+        "y": 492.5555477142334,
+        "wires": [
+            [
+                "536ea950.f68af8"
+            ]
+        ]
+    },
+    {
+        "id": "a975f9e0.f4dc88",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Version",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 610.6667366027832,
+        "y": 530.6666879653931,
+        "wires": [
+            [
+                "882bb670.5c7cd8"
+            ]
+        ]
+    },
+    {
+        "id": "882bb670.5c7cd8",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#ver\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 779.4445343017578,
+        "y": 530.3334226608276,
+        "wires": [
+            [
+                "536ea950.f68af8"
+            ]
+        ]
+    },
+    {
+        "id": "2441eb88.077d34",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Lights",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 610.6667442321777,
+        "y": 569.2222595214844,
+        "wires": [
+            [
+                "2e46e673.1e700a"
+            ]
+        ]
+    },
+    {
+        "id": "855639b2.eb27c8",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Lights Pattern",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 628.5556144714355,
+        "y": 607.1111106872559,
+        "wires": [
+            [
+                "9f88abf0.95cca8"
+            ]
+        ]
+    },
+    {
+        "id": "2e46e673.1e700a",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#l\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 779.2223052978516,
+        "y": 569.1111288070679,
+        "wires": [
+            [
+                "536ea950.f68af8"
+            ]
+        ]
+    },
+    {
+        "id": "9f88abf0.95cca8",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#lp\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 779.4444961547852,
+        "y": 607.000054359436,
+        "wires": [
+            [
+                "536ea950.f68af8"
+            ]
+        ]
+    },
+    {
+        "id": "16abdf3e.a0e241",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Turn Left",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 612.7778511047363,
+        "y": 325.1111478805542,
+        "wires": [
+            [
+                "9b0dd1a.4d8c93"
+            ]
+        ]
+    },
+    {
+        "id": "9b0dd1a.4d8c93",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "var newOffset = 0.0;\nif (context.global.offsetGroundShock) {\n    newOffset = context.global.offsetGroundShock - 30.0;\n}\n\nmsg.payload = JSON.stringify({\n    d: {\n        action : \"#c\",\n        offset : newOffset\n      }\n});\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 778.4444847106934,
+        "y": 324.8889317512512,
+        "wires": [
+            [
+                "536ea950.f68af8"
+            ]
+        ]
+    },
+    {
+        "id": "53255938.1ab558",
+        "type": "inject",
+        "z": "501484c3.394dbc",
+        "name": "Turn Right",
+        "topic": "",
+        "payload": "",
+        "payloadType": "none",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 617.222297668457,
+        "y": 362.55559158325195,
+        "wires": [
+            [
+                "ade93838.6a83a8"
+            ]
+        ]
+    },
+    {
+        "id": "ade93838.6a83a8",
+        "type": "function",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "func": "var newOffset = 0.0;\nif (context.global.offsetGroundShock) {\n    if (context.global.offsetSkull) {\n        if (context.global.offsetSkull - 50 > context.global.offsetGroundShock + 30.0) {\n            newOffset = context.global.offsetGroundShock + 30.0;\n        }\n        else {\n            newOffset = context.global.offsetGroundShock - 30.0;\n        }\n    }\n    else {\n        newOffset = context.global.offsetGroundShock + 30.0;\n    }\n}\n\nmsg.payload = JSON.stringify({\n    d: {\n        action : \"#c\",\n        offset : newOffset\n      }\n});\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 778.3333702087402,
+        "y": 362.66669178009033,
+        "wires": [
+            [
+                "536ea950.f68af8"
+            ]
+        ]
+    },
+    {
+        "id": "19643420.3f0b0c",
+        "type": "ibmiot in",
+        "z": "501484c3.394dbc",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "deviceId": "ios",
+        "applicationId": "",
+        "deviceType": "camera",
+        "eventType": "+",
+        "commandType": "",
+        "format": "json",
+        "name": "Camera",
+        "service": "registered",
+        "allDevices": false,
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allEvents": true,
+        "allCommands": true,
+        "allFormats": true,
+        "qos": "0",
+        "x": 438.0000114440918,
+        "y": 63.000000953674316,
+        "wires": [
+            [
+                "4100328a.add1dc",
+                "19bf06ca.f32819",
+                "184f226a.5c59be"
+            ]
+        ]
+    },
+    {
+        "id": "184f226a.5c59be",
+        "type": "debug",
+        "z": "501484c3.394dbc",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 777.0000114440918,
+        "y": 65.00000095367432,
+        "wires": []
+    }
+]
