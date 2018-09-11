@@ -1,0 +1,15 @@
+TensorFlow Object Detection for Anki Overdrive Cars
+https://github.com/nheidloff/object-detection-anki-overdrive-cars
+© Copyright IBM Corp. 2018
+
+
+The following code is used in this project:
+
+https://github.com/tensorflow/models/tree/master/research/object_detection
+ALv2: https://github.com/tensorflow/models/blob/master/LICENSE
+
+https://github.com/csharpseattle/tensorflowiOS
+MIT: https://github.com/csharpseattle/tensorflowiOS/blob/master/LICENSE
+
+https://github.com/emqtt/CocoaMQTT
+MIT: https://github.com/emqtt/CocoaMQTT/blob/master/LICENSE

@@ -1,0 +1,5 @@
+volume/data/
+volume/frozen-graph/
+volume/training/
+volume/testing/frozen_inference_graph.pb
+volume/testing/label_map.pbtxt
