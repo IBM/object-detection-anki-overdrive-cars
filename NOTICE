@@ -5,7 +5,7 @@ https://github.com/nheidloff/object-detection-anki-overdrive-cars
 
 The following code is used in this project:
 
-https://github.com/tensorflow/models/tree/master/research/object_detection
+https://github.com/tensorflow/models/research/object_detection
 ALv2: https://github.com/tensorflow/models/blob/master/LICENSE
 
 https://github.com/csharpseattle/tensorflowiOS

@@ -23,6 +23,7 @@
 		53D01DA11FB961C200AEAFC6 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D01DA01FB961C200AEAFC6 /* libstdc++.tbd */; };
 		71F6A36F213FA75A00FC89A3 /* frozen_inference_graph.pb in Resources */ = {isa = PBXBuildFile; fileRef = 71F6A36D213FA75A00FC89A3 /* frozen_inference_graph.pb */; };
 		71F6A370213FA75A00FC89A3 /* label_map.txt in Resources */ = {isa = PBXBuildFile; fileRef = 71F6A36E213FA75A00FC89A3 /* label_map.txt */; };
+		AEA485DE642A108B16624B71 /* Pods_tensorflowiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0CC85ABEFEA99B430E5DDC5 /* Pods_tensorflowiOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		53D01DA01FB961C200AEAFC6 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		71F6A36D213FA75A00FC89A3 /* frozen_inference_graph.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = frozen_inference_graph.pb; sourceTree = "<group>"; };
 		71F6A36E213FA75A00FC89A3 /* label_map.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = label_map.txt; sourceTree = "<group>"; };
+		C0CC85ABEFEA99B430E5DDC5 /* Pods_tensorflowiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tensorflowiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			files = (
 				53D01DA11FB961C200AEAFC6 /* libstdc++.tbd in Frameworks */,
 				53D01D9A1FB95DCF00AEAFC6 /* Accelerate.framework in Frameworks */,
+				AEA485DE642A108B16624B71 /* Pods_tensorflowiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +75,7 @@
 				5365E4721FB6D9E00004EFFD /* tensorflowiOS */,
 				5365E4711FB6D9E00004EFFD /* Products */,
 				53D01D981FB95DB600AEAFC6 /* Frameworks */,
+				59E748D267D5AFC9095652F8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,8 +161,16 @@
 				53D01DA01FB961C200AEAFC6 /* libstdc++.tbd */,
 				53D01D9E1FB961A800AEAFC6 /* libc++.tbd */,
 				53D01D991FB95DB600AEAFC6 /* Accelerate.framework */,
+				C0CC85ABEFEA99B430E5DDC5 /* Pods_tensorflowiOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		59E748D267D5AFC9095652F8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,10 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5365E4821FB6D9E00004EFFD /* Build configuration list for PBXNativeTarget "tensorflowiOS" */;
 			buildPhases = (
+				328F1AC2629D5A26954D9869 /* [CP] Check Pods Manifest.lock */,
 				5354F61A20244232005A7905 /* ShellScript */,
 				5365E46C1FB6D9E00004EFFD /* Sources */,
 				5365E46D1FB6D9E00004EFFD /* Frameworks */,
 				5365E46E1FB6D9E00004EFFD /* Resources */,
+				F427B0208E6030943A471529 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -233,6 +247,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		328F1AC2629D5A26954D9869 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tensorflowiOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5354F61A20244232005A7905 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -245,6 +277,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "source SupportingFiles/BuildPhase.sh";
+		};
+		F427B0208E6030943A471529 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-tensorflowiOS/Pods-tensorflowiOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MQTTClient.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-tensorflowiOS/Pods-tensorflowiOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -417,6 +467,7 @@
 					"$(TENSORFLOW_ROOT)/tensorflow/contrib/makefile/gen/lib",
 				);
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-force_load",
 					"$(TENSORFLOW_ROOT)/tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a",
 					"-lprotobuf",
