@@ -49,7 +49,7 @@ The app recognizes now the red car, the blue car and phones.
 Follow the next steps to train models with your own objects.
 
 ### 1) Development Environment Setup
- 
+
 Invoke the following commands to download all necessary files and to set up a local development environment:
 
 ```bash
@@ -58,7 +58,7 @@ $ cd object-detection-anki-overdrive-cars
 $ my_project_dir=$(pwd)
 $ export PROJECT_DIR=$my_project_dir
 $ docker build -t tensorflow-od .
-$ cd $PROJECT_DIR/volume/data
+$ cd $PROJECT_DIR/data
 $ wget http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz
 $ tar xvzf ssd_mobilenet_v2_coco_2018_03_29.tar.gz
 $ cp -R ${PROJECT_DIR}/data ${PROJECT_DIR}/volume/data
@@ -97,12 +97,12 @@ In the Docker container invoke these commands:
 
 ```bash
 $ cd volume
-$ python create_tfrecord.py 
+$ python create_tfrecord.py
 $ exit
 ```
 
 
-### 3) Training of the Model 
+### 3) Training of the Model
 
 For testing purposes or if you have a machine with TensorFlow GPU support, you can train the models locally.
 
@@ -163,7 +163,7 @@ $ kubectl cp default/train-56cfd5b9f-8x6q4:/tensorflow/models/research/volume/mo
 ```
 
 
-### 4) Save the Model 
+### 4) Save the Model
 
 The training generates checkpoint files in the 'volume/train' directory. These files need to be converted into something that is called a frozen graph file. That file is used later in the iOS app and the Python notebook.
 
@@ -186,7 +186,7 @@ $ exit
 ```
 
 
-### 5) Testing of the Model 
+### 5) Testing of the Model
 
 Before using the model in the iOS app, you can test it in a Python notebook. You can also view the training results via Tensorboard.
 
