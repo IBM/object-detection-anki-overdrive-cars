@@ -174,7 +174,7 @@ Install the [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kube
 
 Follow the instructions in the IBM Cloud dashboard to access your cluster from a local terminal.
 
-Install [FfDL](https://github.com/IBM/FfDL).
+Install [FfDL](https://github.com/IBM/FfDL). You need to follow the instructions in the [Developer Guide](https://github.com/IBM/FfDL/blob/master/docs/developer-guide.md#enable-custom-learner-images-with-development-build) at this point, since custom Docker images need to be enabled in the source code first.
 
 Create an instance of the [Cloud Object Storage](https://console.bluemix.net/catalog/services/cloud-object-storage) service and create HMAC credentials by following these [instructions](https://datascience.ibm.com/docs/content/analyze-data/ml_dlaas_object_store.html). Make sure to use 'Writer' or 'Manager' access and note the aws_access_key_id and aws_secret_access_key for a later step.
 
