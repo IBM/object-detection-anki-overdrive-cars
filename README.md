@@ -106,9 +106,9 @@ $ exit
 
 For testing purposes or if you have a machine with TensorFlow GPU support, you can train the models locally.
 
-I've used Kubernetes on the IBM Cloud to train my model since it took multiple hours.
+I've used Kubernetes on the IBM Cloud to train my model since it took multiple hours. You can either use the raw Kubernetes or [Fabric for Deep Learning (FfDL)](https://github.com/IBM/FfDL) which is an open source operating system "fabric" for Deep Learning.
 
-#### 3a) Local Training of the model
+#### 3a) Local Training of the Model
 
 Start the Docker container:
 
@@ -124,7 +124,7 @@ $ python model_main.py --model_dir=./training --pipeline_config_path=ssd_mobilen
 $ exit
 ```
 
-#### 3b) Training of the model on the IBM Cloud
+#### 3b) Training of the Model on the IBM Cloud
 
 Get a free [IBM Cloud](https://ibm.biz/nheidloff) lite account (no time restriction, no credit card required).
 
@@ -160,6 +160,55 @@ $ cd $PROJECT_DIR/volume/training
 $ kubectl get pods
 $ kubectl exec train-56cfd5b9f-8x6q4 -- ls /tensorflow/models/research/volume/models/train
 $ kubectl cp default/train-56cfd5b9f-8x6q4:/tensorflow/models/research/volume/models/train .
+```
+
+#### 3c) Training of the Model on the IBM Cloud with FfDL
+
+Get a [IBM Cloud](https://ibm.biz/nheidloff) account.
+
+Install the [IBM Cloud](https://console.bluemix.net/docs/cli/index.html#downloads) CLI.
+
+Create a [Kubernetes cluster](https://console.bluemix.net/catalog/?category=containers).
+
+Install the [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+
+Follow the instructions in the IBM Cloud dashboard to access your cluster from a local terminal.
+
+Install [FfDL](https://github.com/IBM/FfDL).
+
+Create an instance of the [Cloud Object Storage](https://console.bluemix.net/catalog/services/cloud-object-storage) service and create HMAC credentials by following these [instructions](https://datascience.ibm.com/docs/content/analyze-data/ml_dlaas_object_store.html). Make sure to use 'Writer' or 'Manager' access and note the aws_access_key_id and aws_secret_access_key for a later step.
+
+Install and configure the AWS CLI by following these [instructions](https://console.bluemix.net/docs/services/cloud-object-storage/cli/aws-cli.html#use-the-aws-cli).
+
+Build a Docker images. Replace 'nheidloff' with your Dockerhub account name:
+
+```bash
+$ cd $PROJECT_DIR
+$ docker build --file DockerfileCloud -t nheidloff/train-od .
+$ docker push nheidloff/train-od
+```
+
+Create two buckets (use unique names):
+
+```bash
+$ aws --endpoint-url=http://s3-api.dal-us-geo.objectstorage.softlayer.net --profile ibm_cos s3 mb s3://nh-od-input
+$ aws --endpoint-url=http://s3-api.dal-us-geo.objectstorage.softlayer.net --profile ibm_cos s3 mb s3://nh-od-output
+```
+
+Define your Object Storage credentials, bucket names and Docker image name in [ffdl/manifest.yml](ffdl/manifest.yml).
+
+At the end of the FfDL installation a URL is provided to open the FfDL web UI. Open this URL in browser. It looks similar to "http://169.48.99.155:30312/#/login?endpoint=169.48.99.154:32293&username=test-user".
+
+Upload [ffdl/manifest.yml](ffdl/manifest.yml) and [ffdl/model.zip](ffdl/model.zip) and start the training.
+
+To copy the output files to a local directory, run these commands from a local terminal. Replace 'training-AmbQ5RAmR' with your training id.
+
+```bash
+$ cd $PROJECT_DIR/volume
+$ mkdir ffdl-output
+$ cd ffdl-output
+$ aws --endpoint-url=http://s3-api.dal-us-geo.objectstorage.softlayer.net --profile ibm_cos s3 sync s3://nh-od-output .
+$ cp -R training-AmbQ5RAmR/training $PROJECT_DIR/volume/training
 ```
 
 

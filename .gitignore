@@ -5,3 +5,5 @@ volume/testing/frozen_inference_graph.pb
 volume/testing/label_map.pbtxt
 ios-nh/
 ios/Pods
+demo.txt
+ffdl/manifest-nh.yml
