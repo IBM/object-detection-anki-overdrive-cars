@@ -128,9 +128,9 @@ $ exit
 
 Get a free [IBM Cloud](https://ibm.biz/nheidloff) lite account (no time restriction, no credit card required).
 
-Install the [IBM Cloud](https://console.bluemix.net/docs/cli/index.html#downloads) CLI.
+Install the [IBM Cloud](https://cloud.ibm.com/docs/cli/index.html#downloads) CLI.
 
-Create a free/lite [Kubernetes cluster](https://console.bluemix.net/catalog/?category=containers).
+Create a free/lite [Kubernetes cluster](https://cloud.ibm.com/catalog/?category=containers).
 
 Install the [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
@@ -166,9 +166,9 @@ $ kubectl cp default/train-56cfd5b9f-8x6q4:/tensorflow/models/research/volume/mo
 
 Get a [IBM Cloud](https://ibm.biz/nheidloff) account.
 
-Install the [IBM Cloud](https://console.bluemix.net/docs/cli/index.html#downloads) CLI.
+Install the [IBM Cloud](https://cloud.ibm.com/docs/cli/index.html#downloads) CLI.
 
-Create a [Kubernetes cluster](https://console.bluemix.net/catalog/?category=containers).
+Create a [Kubernetes cluster](https://cloud.ibm.com/catalog/?category=containers).
 
 Install the [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
@@ -176,9 +176,9 @@ Follow the instructions in the IBM Cloud dashboard to access your cluster from a
 
 Install [FfDL](https://github.com/IBM/FfDL). You need to follow the instructions in the [Developer Guide](https://github.com/IBM/FfDL/blob/master/docs/developer-guide.md#enable-custom-learner-images-with-development-build) at this point, since custom Docker images need to be enabled in the source code first.
 
-Create an instance of the [Cloud Object Storage](https://console.bluemix.net/catalog/services/cloud-object-storage) service and create HMAC credentials by following these [instructions](https://datascience.ibm.com/docs/content/analyze-data/ml_dlaas_object_store.html). Make sure to use 'Writer' or 'Manager' access and note the aws_access_key_id and aws_secret_access_key for a later step.
+Create an instance of the [Cloud Object Storage](https://cloud.ibm.com/catalog/services/cloud-object-storage) service and create HMAC credentials by following these [instructions](https://datascience.ibm.com/docs/content/analyze-data/ml_dlaas_object_store.html). Make sure to use 'Writer' or 'Manager' access and note the aws_access_key_id and aws_secret_access_key for a later step.
 
-Install and configure the AWS CLI by following these [instructions](https://console.bluemix.net/docs/services/cloud-object-storage/cli/aws-cli.html#use-the-aws-cli).
+Install and configure the AWS CLI by following these [instructions](https://cloud.ibm.com/docs/services/cloud-object-storage/cli/aws-cli.html#use-the-aws-cli).
 
 Build a Docker images. Replace 'nheidloff' with your Dockerhub account name:
 
