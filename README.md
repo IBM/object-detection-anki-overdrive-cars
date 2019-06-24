@@ -4,7 +4,7 @@ The [object-detection-anki-overdrive-cars](https://github.com/nheidloff/object-d
 
 * With an iOS app cars and phones can be detected on [Anki Overdrive](https://anki.com/) tracks. When an obstacle (phone) is detected, the cars stop. This project contains a trained TensorFlow Object Detection model based on MobileNet and instructions how to run it in iOS apps and Jupyter notebooks.
 
-* The project also contains documentation how to train models to recognize other objects via [TensorFlow Object Detection](https://github.com/tensorflow/models/research/object_detection). To make the setup of the development environment as simple as possible, Docker containers are provided.
+* The project also contains documentation how to train models to recognize other objects via [TensorFlow Object Detection](https://github.com/tensorflow/models/tree/master/research/object_detection). To make the setup of the development environment as simple as possible, Docker containers are provided.
 
 This picture shows the iPad app which recognizes the two cars and the phone:
 
@@ -29,7 +29,7 @@ $ git clone https://github.com/nheidloff/object-detection-anki-overdrive-cars.gi
 
 I ran into compilation errors. Check out the [workaround](https://github.com/tensorflow/tensorflow/issues/18356) which worked for me.
 
-Open [tensorflow.xconfig](ios/SupportingFiles/tensorflow.xconfig) in a text editor and point to the folder where you cloned the TensorFlow repo, for example:
+Open [tensorflow.xcconfig](ios/SupportingFiles/tensorflow.xcconfig) in a text editor and point to the folder where you cloned the TensorFlow repo, for example:
 TENSORFLOW_ROOT=/Users/nheidloff/Development/tensorflow
 
 To install the dependencies, invoke these commands from the 'ios' directory:
@@ -66,11 +66,11 @@ $ cp -R ${PROJECT_DIR}/data ${PROJECT_DIR}/volume/data
 
 ### 2) Labelling of Images and Creation of TFRecords
 
-Take pictures from the objects you want to recognize and replace the pictures in the [volume/data/images](volume/data/images) directory.
+Take pictures from the objects you want to recognize and replace the pictures in the [data/images](data/images) directory.
 
-Use [labelImg](https://github.com/tzutalin/labelImg) to create annotations. Store the annotation files in the [volume/data/annotations](volume/data/annotations) directory.
+Use [labelImg](https://github.com/tzutalin/labelImg) to create annotations. Store the annotation files in the [data/annotations](data/annotations) directory.
 
-Define your objects in [volume/data/label_map.pbtxt](volume/data/label_map.pbtxt). See the [TensorFlow documentation](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/using_your_own_dataset.md) for more details.
+Define your objects in [data/label_map.pbtxt](data/label_map.pbtxt). See the [TensorFlow documentation](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/using_your_own_dataset.md) for more details.
 
 From what I've read these are some best practices how to create the training data:
 
@@ -126,11 +126,11 @@ $ exit
 
 #### 3b) Training of the Model on the IBM Cloud
 
-Get a free [IBM Cloud](https://ibm.biz/nheidloff) lite account (no time restriction, no credit card required).
+Get a free [IBM Cloud](https://cloud.ibm.com/registration?cm_mmc=OSocial_Blog-_-Developer+(2018)_Innovation-_-WW_WW-_-Niklas-Heidloff-Blog&cm_mmca1=000019RS&cm_mmca2=10004805&) lite account (no time restriction, no credit card required).
 
-Install the [IBM Cloud](https://console.bluemix.net/docs/cli/index.html#downloads) CLI.
+Install the [IBM Cloud](https://cloud.ibm.com/docs/cli/index.html#downloads) CLI.
 
-Create a free/lite [Kubernetes cluster](https://console.bluemix.net/catalog/?category=containers).
+Create a free/lite [Kubernetes cluster](https://cloud.ibm.com/catalog?category=containers).
 
 Install the [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
@@ -164,11 +164,11 @@ $ kubectl cp default/train-56cfd5b9f-8x6q4:/tensorflow/models/research/volume/mo
 
 #### 3c) Training of the Model on the IBM Cloud with FfDL
 
-Get a [IBM Cloud](https://ibm.biz/nheidloff) account.
+Get a [IBM Cloud](https://cloud.ibm.com/registration?cm_mmc=OSocial_Blog-_-Developer+(2018)_Innovation-_-WW_WW-_-Niklas-Heidloff-Blog&cm_mmca1=000019RS&cm_mmca2=10004805&) account.
 
-Install the [IBM Cloud](https://console.bluemix.net/docs/cli/index.html#downloads) CLI.
+Install the [IBM Cloud](https://cloud.ibm.com/docs/cli/index.html#downloads) CLI.
 
-Create a [Kubernetes cluster](https://console.bluemix.net/catalog/?category=containers).
+Create a [Kubernetes cluster](https://cloud.ibm.com/catalog?category=containers).
 
 Install the [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
@@ -176,9 +176,9 @@ Follow the instructions in the IBM Cloud dashboard to access your cluster from a
 
 Install [FfDL](https://github.com/IBM/FfDL). You need to follow the instructions in the [Developer Guide](https://github.com/IBM/FfDL/blob/master/docs/developer-guide.md#enable-custom-learner-images-with-development-build) at this point, since custom Docker images need to be enabled in the source code first.
 
-Create an instance of the [Cloud Object Storage](https://console.bluemix.net/catalog/services/cloud-object-storage) service and create HMAC credentials by following these [instructions](https://datascience.ibm.com/docs/content/analyze-data/ml_dlaas_object_store.html). Make sure to use 'Writer' or 'Manager' access and note the aws_access_key_id and aws_secret_access_key for a later step.
+Create an instance of the [Cloud Object Storage](https://cloud.ibm.com/catalog/services/cloud-object-storage) service and create HMAC credentials by following these [instructions](https://dataplatform.cloud.ibm.com/docs/content/analyze-data/ml_dlaas_object_store.html). Make sure to use 'Writer' or 'Manager' access and note the aws_access_key_id and aws_secret_access_key for a later step.
 
-Install and configure the AWS CLI by following these [instructions](https://console.bluemix.net/docs/services/cloud-object-storage/cli/aws-cli.html#use-the-aws-cli).
+Install and configure the AWS CLI by following these [instructions](https://cloud.ibm.com/docs/services/cloud-object-storage/cli/aws-cli.html#use-the-aws-cli).
 
 Build a Docker images. Replace 'nheidloff' with your Dockerhub account name:
 
@@ -247,7 +247,7 @@ Invoke the following commands:
 
 ```bash
 $ cp $PROJECT_DIR/volume/frozen-graph/frozen_inference_graph.pb $PROJECT_DIR/volume/testing/
-$ cp $PROJECT_DIR/volume/data/label_map.pbtxt $PROJECT_DIR/volume/testing/
+$ cp $PROJECT_DIR/data/label_map.pbtxt $PROJECT_DIR/volume/testing/
 $ docker build --file DockerfileNotebook -t tensorflow-od-test .
 $ docker run -v $PROJECT_DIR/volume:/tensorflow/models/research/volume -it -p 8888:8888 --rm tensorflow-od-test
 ```
@@ -274,7 +274,7 @@ In order to use your own model, copy the following two files:
 
 ```bash
 $ cp $PROJECT_DIR/volume/frozen-graph/frozen_inference_graph.pb $PROJECT_DIR/ios/models/
-$ cp $PROJECT_DIR/volume/data/label_map.pbtxt $PROJECT_DIR/ios/models/label_map.txt
+$ cp $PROJECT_DIR/data/label_map.pbtxt $PROJECT_DIR/ios/models/label_map.txt
 ```
 
 Sign the app, connect an iOS device and launch the app.
@@ -282,7 +282,7 @@ Sign the app, connect an iOS device and launch the app.
 
 ## Setup of the Demo to stop Cars when Obstacles are detected
 
-In order to stop the Anki Overdrive cars when phones are put on the track, you need to set up additional components, especially the Node.js controller and the Watson IoT Platform. In order to do this, follow the instructions from my project [node-mqtt-for-anki-overdrive](https://github.com/IBM-Bluemix/node-mqtt-for-anki-overdrive).
+In order to stop the Anki Overdrive cars when phones are put on the track, you need to set up additional components, especially the Node.js controller and the Watson IoT Platform. In order to do this, follow the instructions from my project [node-mqtt-for-anki-overdrive](https://github.com/IBM-Cloud/node-mqtt-for-anki-overdrive).
 
 Here is a diagram how the demo works:
 
@@ -296,4 +296,4 @@ Change the lines 63ff with your own IoT configuration.
 
 Redeploy the app to your iOS device.
 
-Rather than using the Node-RED flow of the original [project](https://github.com/IBM-Bluemix/node-mqtt-for-anki-overdrive) you need to deploy the version from this project [node-red-flow](node-red-flow) to your Node-RED instance.
+Rather than using the Node-RED flow of the original [project](https://github.com/IBM-Cloud/node-mqtt-for-anki-overdrive) you need to deploy the version from this project [node-red-flow.json](node-red-flow.json) to your Node-RED instance.
